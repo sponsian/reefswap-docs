@@ -3,7 +3,7 @@ id: pair
 title: Pair
 ---
 
-This documentation covers Uniswap-specific functionality. For ERC-20 functionality, see [Pair (ERC-20)](../smart-contracts/pair-erc-20).
+This documentation covers Uniswap-specific functionality. For ERC-20 functionality, see [Pair (ERC-20)](../smart-contracts/pair-ERC-20).
 
 # Code
 
@@ -130,7 +130,7 @@ function mint(address to) external returns (uint liquidity);
 
 Creates pool tokens.
 
-- Emits [Mint](#mint), [Sync](#sync), [Transfer](../smart-contracts/pair-erc-20#transfer).
+- Emits [Mint](#mint), [Sync](#sync), [Transfer](../smart-contracts/pair-ERC-20#transfer).
 
 ## burn
 
@@ -140,7 +140,7 @@ function burn(address to) external returns (uint amount0, uint amount1);
 
 Destroys pool tokens.
 
-- Emits [Burn](#burn), [Sync](#sync), [Transfer](../smart-contracts/pair-erc-20#transfer).
+- Emits [Burn](#burn), [Sync](#sync), [Transfer](../smart-contracts/pair-ERC-20#transfer).
 
 ## swap
 

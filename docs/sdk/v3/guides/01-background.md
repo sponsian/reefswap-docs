@@ -66,4 +66,4 @@ Cryptocurrency applications often work with very small fractions of tokens. As a
 
 ### Currency
 
-The `Currency` class can represent both native currency (ETH) and an ERC20 `Token`. Currencies vary in their relative value, so the `Token` class allows your application to define the number of decimals needed for each currency along with the currency's address, symbol, and name.
+The `Currency` class can represent both native currency (ETH) and an ERC-20 `Token`. Currencies vary in their relative value, so the `Token` class allows your application to define the number of decimals needed for each currency along with the currency's address, symbol, and name.

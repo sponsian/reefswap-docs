@@ -265,7 +265,7 @@ const chartTicks: TicksChart[] = allProcessedTicks.map((tickProcessed) => {
 ```
 
 The loss of precision will not be visually noticeable in the chart and we are still able to display the exact number in a Tooltip if we wish to.
-Liquidity is stored in a `uint128` format onchain, so the maximum loss of precision will be far smaller than the number of decimals of almost any ERC20 Token.
+Liquidity is stored in a `uint128` format onchain, so the maximum loss of precision will be far smaller than the number of decimals of almost any ERC-20 Token.
 
 Finally, we draw the Chart:
 

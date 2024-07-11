@@ -8,7 +8,7 @@ Below is an exhaustive list of all external constants used in the SDK.
 ```typescript
 import BigNumber from 'bignumber.js'
 
-import ERC20 from './abis/ERC20.json'
+import ERC-20 from './abis/ERC-20.json'
 import FACTORY from './abis/FACTORY.json'
 import EXCHANGE from './abis/EXCHANGE.json'
 

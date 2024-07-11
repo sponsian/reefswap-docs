@@ -21,7 +21,7 @@ The factory holds the generic bytecode responsible for powering pairs. Its prima
 
 [Reference documentation](../../reference/smart-contracts/pair)
 
-[Reference documentation (ERC-20)](../../reference/smart-contracts/pair-erc-20)
+[Reference documentation (ERC-20)](../../reference/smart-contracts/pair-ERC-20)
 
 Pairs have two primary purposes: serving as automated market makers and keeping track of pool token balances. They also expose data which can be used to build decentralized price oracles.
 
@@ -59,4 +59,4 @@ The router fully supports interacting with any WETH pair via ETH.
 
 ## Minimum Liquidity
 
-To ameliorate rounding errors and increase the theoretical minimum tick size for liquidity provision, pairs burn the first [MINIMUM_LIQUIDITY](../../reference/smart-contracts/pair#minimum_liquidity) pool tokens. For the vast majority of pairs, this will represent a trivial value. The burning happens automatically during the first liquidity provision, after which point the [totalSupply](../../reference/smart-contracts/pair-erc-20#totalsupply) is forevermore bounded.
+To ameliorate rounding errors and increase the theoretical minimum tick size for liquidity provision, pairs burn the first [MINIMUM_LIQUIDITY](../../reference/smart-contracts/pair#minimum_liquidity) pool tokens. For the vast majority of pairs, this will represent a trivial value. The burning happens automatically during the first liquidity provision, after which point the [totalSupply](../../reference/smart-contracts/pair-ERC-20#totalsupply) is forevermore bounded.

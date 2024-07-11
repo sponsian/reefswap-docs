@@ -207,7 +207,7 @@ function removeLiquidityWithPermit(
 ) external returns (uint amountA, uint amountB);
 ```
 
-Removes liquidity from an ERC-20⇄ERC-20 pool without pre-approval, thanks to [permit](pair-erc-20#permit).
+Removes liquidity from an ERC-20⇄ERC-20 pool without pre-approval, thanks to [permit](pair-ERC-20#permit).
 
 | Name       | Type      |                                                                                       |
 | :--------- | :-------- | :------------------------------------------------------------------------------------ |
@@ -240,7 +240,7 @@ function removeLiquidityETHWithPermit(
 ) external returns (uint amountToken, uint amountETH);
 ```
 
-Removes liquidity from an ERC-20⇄WETTH pool and receive ETH without pre-approval, thanks to [permit](pair-erc-20#permit).
+Removes liquidity from an ERC-20⇄WETTH pool and receive ETH without pre-approval, thanks to [permit](pair-ERC-20#permit).
 
 | Name           | Type      |                                                                                      |
 | :------------- | :-------- | :----------------------------------------------------------------------------------- |

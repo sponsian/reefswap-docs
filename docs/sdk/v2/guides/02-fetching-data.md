@@ -45,7 +45,7 @@ import { ChainId } from '@uniswap/sdk-core'
 
 async function getDecimals(chainId: ChainId, tokenAddress: string): Promise<number> {
   // Setup provider, import necessary ABI ...
-  const tokenContract = new ethers.Contract(tokenAddress, erc20abi, provider)
+  const tokenContract = new ethers.Contract(tokenAddress, ERC-20abi, provider)
   return tokenContract["decimals"]()
 }
 ```
