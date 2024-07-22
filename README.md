@@ -1,15 +1,15 @@
-# Uniswap Documentation
+# ReefSwap Documentation
 
-This web application contains all documentation for Uniswap products. It is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+This web application contains all documentation for ReefSwap products. It is built using Gitbook.
 
 
 # Project Layout
 
-### Uniswap documentation is broken down into four sections:
-- Concepts - General Uniswap information or concepts useful for using Uniswap products, such as *Liquidity* and *Fees*
-- Contracts - Uniswap smart contracts such as the V3 Contracts or *Permit2*
-- SDKs - Uniswap integrations such as the *v3-sdk* and the *Swap Widget*
-- APIs - The Uniswap APIs such the *Subgraph API*
+### ReefSwap documentation is broken down into four sections:
+- Concepts - General ReefSwap information or concepts useful for using ReefSwap products, such as *Liquidity* and *Fees*
+- Contracts - ReefSwap smart contracts such as the V3 Contracts or *Permit2*
+- SDKs - ReefSwap integrations such as the *v3-sdk* and the *Swap Widget*
+- APIs - The ReefSwap APIs such the *Subgraph API*
 
 ### Each item in a section should include the following:
 - *Overview*
@@ -18,7 +18,6 @@ This web application contains all documentation for Uniswap products. It is buil
 
 ## Adding Documentation
 
-> **After deploying your change, please make sure you [update the search indices](#how-to-update-search-indices-with-algolia) if a new file was added as part of the change**
 ### Overview
 A product overview should address points such as:
 
@@ -27,11 +26,11 @@ A product overview should address points such as:
 - Where does the source code of the product live?
 - Where does the code artifact live (eg *npm*) and how does someone integrate with it?
 
-A good example is the [V3 Smart Contracts](./docs/contracts/v3/overview.md).
+A good example is the [Smart Contracts](./docs/contracts/v2/overview.md).
 
 ### Guides
 > Guides should follow the **Principles of a Good Guide**:
-- A guide corresponds to a reusable piece of code that demonstrates a single concept in the Uniswap ecosystem.
+- A guide corresponds to a reusable piece of code that demonstrates a single concept in the ReefSwap ecosystem.
 - Guides have three parts:
     1. An **introduction** that explains the concept that the piece of code implements and a summary of what the guide will cover and result in.
     2. A step-by-step **walkthrough** of each line of the example code 
@@ -45,16 +44,16 @@ A good example is the [V3 Smart Contracts](./docs/contracts/v3/overview.md).
 - Use the least dependencies as possible
 - Input changes (eg address, tokens, amounts) should be in the code
 
-By implementing these consistent principles Uniswap will have docs that are easy to understand and produce reusable code for its community.
+By implementing these consistent principles ReefSwap will have docs that are easy to understand and produce reusable code for its community.
 
 
-A good example is the [V3 SDK Guides](./docs/sdk/v3/guides/01-quick-start.md).
+A good example are the [SDK Guides](./docs/sdk/v2/guides/01-quick-start.md).
 
 ### Technical References
-This should contain the technical reference for the exported interfaces. A good example is the [V3 SDK](./docs/sdk/v3/reference/overview).
+This should contain the technical reference for the exported interfaces. A good example is the [V2 SDK](./docs/sdk/v2/reference/overview).
 These files can be created using the [guides below](#how-to-create-a-technical-reference).
 
-# Contributing to Uniswap Docs
+# Contributing to ReefSwap Docs
 
 ## Guidelines
 Contributing to the docs site is a great way to get involved in the dev community and help other developers along the way! Check out our guidelines [here](./CONTRIBUTING.md).
@@ -69,7 +68,6 @@ Contributing to the docs site is a great way to get involved in the dev communit
 - Did I include Technical Reference of the product under *<category_name>/<product_name>/reference* ?
 - Did I give a descriptive name/id to each document? This is important because that shows up in the URL
 - Did I open a PR using the the [contributing](./CONTRIBUTING.md) guidelines?
-- Did I [update the search indices](#how-to-update-search-indices-with-algolia) after my change was deployed?
 
 ## Checklist example
 
@@ -88,8 +86,6 @@ Let's walk through an example by considering the *Permit2* smart contract:
     - Yes I added them [here](./docs/contracts/permit2/reference)
 - Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines?
     - Yes
-- Did I update the search indices after my change was deployed?
-    - Yes I did using the [guides below](#how-to-update-search-indices-with-algolia)
 
 # How to create a Technical Reference
 ## How to generate markdown files from solidity Natspec comments
@@ -116,18 +112,6 @@ Depending on how your project was created, you might have to install Typescript:
 You might have to use the `--skipErrorChecking` flag to the `typedoc` command for cases where types are fetched during transpile time, such as contract ABIs.
 
 See https://www.npmjs.com/package/typedoc-plugin-markdown for details.
-
-# How to Update search indices with algolia
-
-- Create an .env file with `APPLICATION_ID` and the `API_KEY` (write access). 
-If you don't have those, one for the Engineering Managers should be able to help you.
-- Edit config.json file if needed:
-    - Start url from updated website
-    - Sitemap url from updated website: eg for docs: https://docs.uniswap.org/sitemap.xml
-    - Use "v3-docs" as the index name
-- [Install](https://www.docker.com/products/docker-desktop/) and start running Docker Desktop
-- Install jq `brew install jq`
-- Run `docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
 
 ## Installation
 

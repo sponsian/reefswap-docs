@@ -5,7 +5,7 @@ title: Security
 
 # Audit & Formal Verification
 
-Between January 8 and April 30, a team of six engineers reviewed and formally verified crucial components of the smart contracts for Uniswap V2.
+Between January 8 and April 30, a team of six engineers reviewed and formally verified crucial components of the smart contracts for Uniswap V2, which is what ReefSwap is based on.
 
 Their past work includes smart contract development on and formal verification of multi-collateral DAI.
 

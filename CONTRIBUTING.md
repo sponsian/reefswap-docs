@@ -17,8 +17,8 @@ Thanks for giving a little extra love to our docs site! Below are some basic gui
 Set up your fork with the following terminal commands, or an alteration of them to suit your environment:
 
 ```
-cd uniswap-docs
-git remote add upstream https://github.com/Uniswap/uniswap-docs.git
+cd reefswap-docs
+git remote add upstream https://github.com/sponsian/reefswap-docs.git
 git fetch upstream
 git pull --rebase upstream main
 git checkout -b "my-contribution"
@@ -36,5 +36,5 @@ Below are a couple of ways anyone can start contributing:
 3. Create a guide! Some ideas for guides are:
    - How to set up a local test environment. This can be specific to your testing suite! It would be great to get a collecting of different testing setups on the site.
    - How to fetch on-chain data for liquidity volume, current prices, number of swaps, sizes of swaps, etc.
-   - A "Hello World" guide for solidity and Uniswap development.
+   - A "Hello World" guide for solidity and ReefSwap development.
    - How to set up your first contract and deploy it on a testnet.
