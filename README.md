@@ -7,8 +7,8 @@ This web application contains all documentation for ReefSwap products. It is bui
 
 ### ReefSwap documentation is broken down into four sections:
 - Concepts - General ReefSwap information or concepts useful for using ReefSwap products, such as *Liquidity* and *Fees*
-- Contracts - ReefSwap smart contracts such as the V3 Contracts or *Permit2*
-- SDKs - ReefSwap integrations such as the *v3-sdk* and the *Swap Widget*
+- Contracts - ReefSwap smart contracts
+- SDKs - ReefSwap integrations, when they're ready
 - APIs - The ReefSwap APIs such the *Subgraph API*
 
 ### Each item in a section should include the following:
@@ -71,18 +71,18 @@ Contributing to the docs site is a great way to get involved in the dev communit
 
 ## Checklist example
 
-Let's walk through an example by considering the *Permit2* smart contract:
+Let's walk through an example by considering the ReefSwap smart contract:
 -  Did I pick the right section for the product? 
     - In this case, [contracts](./docs/contracts/) 
 - Did I create the product folder? 
-    - In this case, [yes](./docs/contracts/permit2/)
+    - In this case, [yes](./docs/contracts/v2/)
 - Did I introduce any new concepts? 
     - No
 - Did I include an Overview of the product under */contracts/permit2/overview* ?
-    - Yes, I did add them [here](./docs/contracts/permit2/overview.md)
+    - Yes, I did add them [here](./docs/contracts/v2/overview.md)
 - Did I include Guides of the product under *contracts/permit2/guides* ?
-    - No, they should be added [here](./docs/contracts/permit2/guides)
+    - No, they should be added [here](./docs/contracts/v2/guides)
 - Did I include Technical Reference of the product under *contracts/permit2/reference* ?
-    - Yes I added them [here](./docs/contracts/permit2/reference)
+    - Yes I added them [here](./docs/contracts/v2/reference)
 - Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines?
     - Yes
