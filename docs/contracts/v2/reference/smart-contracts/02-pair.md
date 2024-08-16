@@ -3,11 +3,11 @@ id: pair
 title: Pair
 ---
 
-This documentation covers Uniswap-specific functionality. For ERC-20 functionality, see [Pair (ERC-20)](../smart-contracts/pair-ERC-20).
+This documentation covers ReefSwap-specific functionality. For ERC-20 functionality, see [Pair (ERC-20)](../smart-contracts/pair-ERC-20).
 
 # Code
 
-[`UniswapV2Pair.sol`](https://github.com/Uniswap/uniswap-v2-core/blob/master/contracts/UniswapV2Pair.sol)
+[`ReefSwapV2Pair.sol`](https://github.com/reef-chain/reefswap/blob/master/contracts/ReefswapV2Pair.sol)
 
 # Address
 
@@ -173,13 +173,13 @@ See the <a href='/whitepaper.pdf' target='_blank' rel='noopener noreferrer'>whit
 # Interface
 
 ```solidity
-import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
+import '@reefswap/contracts/interfaces/IreefswapV2Pair.sol';
 ```
 
 ```solidity
 pragma solidity >=0.5.0;
 
-interface IUniswapV2Pair {
+interface IReefswapV2Pair {
   event Approval(address indexed owner, address indexed spender, uint value);
   event Transfer(address indexed from, address indexed to, uint value);
 
@@ -232,7 +232,7 @@ interface IUniswapV2Pair {
 # ABI
 
 ```typescript
-import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json'
+import IReefswapV2Pair from '@reefswap/build/IReefswapV2Pair.json'
 ```
 
-[https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2Pair.json](https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2Pair.json)
+[https://unpkg.com/@reefswap/v2-core@1.0.0/build/IReefswapV2Pair.json](https://unpkg.com/@reefswap/build/IReefswapV2Pair.json)

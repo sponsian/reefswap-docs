@@ -3,11 +3,11 @@ id: Pair-ERC-20
 title: Pair (ERC-20)
 ---
 
-This documentation covers ERC-20 functionality for denominating pool tokens. For Uniswap-specific functionality, see [Pair](../smart-contracts/pair).
+This documentation covers ERC-20 functionality for denominating pool tokens. For ReefSwap-specific functionality, see [Pair](../smart-contracts/pair).
 
 # Code
 
-[`UniswapV2ERC20.sol`](https://github.com/Uniswap/uniswap-v2-core/blob/master/contracts/UniswapV2ERC20.sol)
+[`ReefswapV2ERC20.sol`](https://github.com/reef-chain/reefswap/blob/master/contracts/ReefswapV2ERC20.sol)
 
 # Events
 
@@ -35,7 +35,7 @@ Emitted each time a transfer occurs via [transfer](#transfer-1), [transferFrom](
 function name() external pure returns (string memory);
 ```
 
-Returns `Uniswap V2` for all pairs.
+Returns `Reefswap` for all pairs.
 
 ## symbol
 
@@ -148,13 +148,13 @@ Sets the allowance for a spender where approval is granted via a signature.
 # Interface
 
 ```solidity
-import '@uniswap/v2-core/contracts/interfaces/IUniswapV2ERC20.sol';
+import '@reefswap/contracts/interfaces/IReefswapV2ERC20.sol';
 ```
 
 ```solidity
 pragma solidity >=0.5.0;
 
-interface IUniswapV2ERC20 {
+interface IReefswapV2ERC20 {
   event Approval(address indexed owner, address indexed spender, uint value);
   event Transfer(address indexed from, address indexed to, uint value);
 
@@ -180,7 +180,7 @@ interface IUniswapV2ERC20 {
 # ABI
 
 ```typescript
-import IUniswapV2ERC20 from '@uniswap/v2-core/build/IUniswapV2ERC20.json'
+import IReefswapV2ERC20 from '@reefswap/build/IReefswapV2ERC20.json'
 ```
 
-[https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2ERC20.json](https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2ERC20.json)
+[https://unpkg.com/@reefswap/build/IReefswapV2ERC20.json](https://unpkg.com/@reefswap/build/IReefswapV2ERC20.json)

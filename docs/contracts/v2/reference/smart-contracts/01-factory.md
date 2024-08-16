@@ -7,11 +7,11 @@ title: Factory
 
 ## Code
 
-[`UniswapV2Factory.sol`](https://github.com/Uniswap/uniswap-v2-core/blob/master/contracts/UniswapV2Factory.sol)
+[`ReefswapV2Factory.sol`](https://github.com/reef-chain/reefscan/blob/master/contracts/ReefswapV2Factory.sol)
 
 # Address
 
-`UniswapV2Factory` is deployed at `0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f` on the Ethereum [mainnet](https://etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f), and the [Ropsten](https://ropsten.etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f), [Rinkeby](https://rinkeby.etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f), [Görli](https://goerli.etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f), and [Kovan](https://kovan.etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f) testnets. It was built from commit [8160750](https://github.com/Uniswap/uniswap-v2-core/tree/816075049f811f1b061bca81d5d040b96f4c07eb).
+`ReefswapV2Factory` is deployed at `0x380a9033500154872813F6E1120a81ed6c0760a8` on the Reef [mainnet](https://reefscan.com/contract/0x380a9033500154872813F6E1120a81ed6c0760a8), and at `0x9b9a32c56c8F5C131000Acb420734882Cc601d39` on the [Reef testnet](https://ropsten.etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f). 
 
 # Events
 
@@ -89,13 +89,13 @@ Creates a pair for `tokenA` and `tokenB` if one doesn't exist already.
 # Interface
 
 ```solidity
-import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol';
+import '@reefswap/contracts/interfaces/IReefswapV2Factory.sol';
 ```
 
 ```solidity
 pragma solidity >=0.5.0;
 
-interface IUniswapV2Factory {
+interface IReefswapV2Factory {
   event PairCreated(address indexed token0, address indexed token1, address pair, uint);
 
   function getPair(address tokenA, address tokenB) external view returns (address pair);
@@ -112,7 +112,7 @@ interface IUniswapV2Factory {
 # ABI
 
 ```typescript
-import IUniswapV2Factory from '@uniswap/v2-core/build/IUniswapV2Factory.json'
+import IReefwapV2Factory from '@reefswap/build/IReefswapV2Factory.json'
 ```
 
-[https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2Factory.json](https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2Factory.json)
+[https://unpkg.com/@reefswap/v2-core@1.0.0/build/IReefswapV2Factory.json](https://unpkg.com/@reefswap/IUniswapV2Factory.json)

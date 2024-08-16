@@ -3,12 +3,8 @@ id: building-an-oracle
 title: Building an Oracle
 ---
 
-To build a price oracle on Uniswap V2, you must first understand the
-requirements for your use case. Once you understand the kind of price
-average you require, it is a matter of storing the cumulative price
-variable from the pair as often as necessary, and computing
-the average price using two or more observations of the
-cumulative price variables.
+To build a price oracle on ReefSwap, you must first understand the requirements for your use case. Once you understand the kind of price
+average you require, it is a matter of storing the cumulative price variable from the pair as often as necessary, and computing the average price using two or more observations of the cumulative price variables.
 
 # Understanding requirements
 
@@ -26,17 +22,13 @@ Note your answers for the following discussion.
 
 ## Fixed windows
 
-In the case where data freshness is not important and recent prices
-are weighted equally with historical prices, it is enough to
+In the case where data freshness is not important and recent prices are weighted equally with historical prices, it is enough to
 store the cumulative price once per period (e.g. once per 24 hours.)
 
-Computing the average price over these data points gives you 'fixed windows',
-which can be updated after the lapse of each period. We wrote
-an example oracle of this kind
-[here](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/examples/ExampleOracleSimple.sol).
+Computing the average price over these data points gives you 'fixed windows', which can be updated after the lapse of each period. We wrote
+an example oracle of this kind [here](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/examples/ExampleOracleSimple.sol).
 
-This example does not limit the maximum size of the fixed window, i.e.
-it only requires that the window size is greater than 1 period (e.g. 24 hours).
+This example does not limit the maximum size of the fixed window, i.e. it only requires that the window size is greater than 1 period (e.g. 24 hours).
 
 ## Moving averages
 
@@ -45,34 +37,19 @@ window in which the cumulative price variable is measured more often
 than once per period.
 
 There are at least
-[two kinds of moving averages](https://www.investopedia.com/terms/m/movingaverage.asp#types-of-moving-averages)
-that you can compute using the Uniswap cumulative price variable.
+[two kinds of moving averages](https://www.investopedia.com/terms/m/movingaverage.asp#types-of-moving-averages) that you can compute using the ReefSwap cumulative price variable.
 
-[Simple moving averages](https://www.investopedia.com/terms/s/sma.asp)
-give equal weight to each price measurement. We have built
-an example of a sliding window oracle
-[here](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/examples/ExampleSlidingWindowOracle.sol).
+[Simple moving averages](https://www.investopedia.com/terms/s/sma.asp) give equal weight to each price measurement. We have built an example of a sliding window oracle [here](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/examples/ExampleSlidingWindowOracle.sol).
 
-[Exponential moving averages](https://www.investopedia.com/terms/e/ema.asp)
-give more weight to the most recent price measurements. We do not yet have an example written for this type of oracle.
+[Exponential moving averages](https://www.investopedia.com/terms/e/ema.asp) give more weight to the most recent price measurements. We do not yet have an example written for this type of oracle.
 
-You may wish to use exponential moving averages where recent prices
-are more important than historical prices, e.g. in case of liquidations. However, note that
-putting more weight on recent prices makes the oracle cheaper to manipulate
-than weighting all price measurements equally.
+You may wish to use exponential moving averages where recent prices are more important than historical prices, e.g. in case of liquidations. However, note that putting more weight on recent prices makes the oracle cheaper to manipulate than weighting all price measurements equally.
 
 ## Computing average prices
 
-To compute the average price given two cumulative price observations, take the difference between
-the cumulative price at the beginning and end of the period, and
-divide by the elapsed time between them in seconds. This will produce a
-[fixed point unsigned Q112x112](https://en.wikipedia.org/wiki/Fixed-point_arithmetic#Notation)
-number that represents the price of one asset relative to the other. This number is represented as a `uint224` where
-the upper 112 bits represent the integer amount, and the lower 112 bits represent the fractional amount.
+To compute the average price given two cumulative price observations, take the difference between the cumulative price at the beginning and end of the period, and divide by the elapsed time between them in seconds. This will produce a [fixed point unsigned Q112x112](https://en.wikipedia.org/wiki/Fixed-point_arithmetic#Notation) number that represents the price of one asset relative to the other. This number is represented as a `uint224` where the upper 112 bits represent the integer amount, and the lower 112 bits represent the fractional amount.
 
-Pairs contain both `price0CumulativeLast` and `price1CumulativeLast`, which are ratios of reserves
-of `token1`/`token0` and `token0`/`token1` respectively. I.e. the price of `token0` is expressed in terms of
-`token1`/`token0`, while the price of `token1` is expressed in terms of `token0`/`token1`.
+Pairs contain both `price0CumulativeLast` and `price1CumulativeLast`, which are ratios of reserves of `token1`/`token0` and `token0`/`token1` respectively. I.e. the price of `token0` is expressed in terms of `token1`/`token0`, while the price of `token1` is expressed in terms of `token0`/`token1`.
 
 # Getting the latest cumulative price
 
@@ -81,16 +58,15 @@ price, you should use the cumulative price values from the current block. If the
 in the current block, e.g. because there has not been any liquidity event (`mint`/`burn`/`swap`) on the pair in the current
 block, you can compute the cumulative price counterfactually.
 
-We provide a library for use in oracle contracts that has the method
-[`UniswapV2OracleLibrary#currentCumulativePrices`](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/libraries/UniswapV2OracleLibrary.sol#L16)
-for getting the cumulative price as of the current block.
-The current cumulative price returned by this method is computed _counterfactually_, meaning it requires no call to
-the relative gas-expensive `#sync` method on the pair.
+We provide a library for use in oracle contracts that has the method [`UniswapV2OracleLibrary#currentCumulativePrices`](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/libraries/UniswapV2OracleLibrary.sol#L16) for getting the cumulative price as of the current block. 
+
+The current cumulative price returned by this method is computed _counterfactually_, meaning it requires no call to the relative gas-expensive `#sync` method on the pair. 
+
 It is correct regardless of whether a swap has already executed in the current block.
 
 # Notes on overflow
 
-The `UniswapV2Pair` cumulative price variables are designed to eventually overflow,
+The `ReefswapV2Pair` cumulative price variables are designed to eventually overflow,
 i.e. `price0CumulativeLast` and `price1CumulativeLast` and `blockTimestampLast` will overflow through 0.
 
 This should not pose an issue to your oracle design, as the price average computation is concerned with differences
@@ -130,10 +106,6 @@ maintenance calls by other parties.
 
 ## No-maintenance option
 
-It is possible to avoid regularly storing this cumulative price at the
-start of the period by utilizing storage proofs. However, this approach has limitations,
-especially in regard to gas cost and maximum length of the time period over which the average price can be measured.
-If you wish to try this approach, you can follow
-[this repository by Keydonix](https://github.com/Keydonix/uniswap-oracle/).
+It is possible to avoid regularly storing this cumulative price at the start of the period by utilizing storage proofs. However, this approach has limitations, especially in regard to gas cost and maximum length of the time period over which the average price can be measured. If you wish to try this approach, you can follow [this repository by Keydonix](https://github.com/Keydonix/uniswap-oracle/).
 
-Keydonix has developed a general purpose price feed oracle built on Uniswap v2 that supports arbitrary time windows (up to 256 blocks) and doesn't require any active maintenance.
+Keydonix has developed a general purpose price feed oracle built on Reefswap that supports arbitrary time windows (up to 256 blocks) and doesn't require any active maintenance.
