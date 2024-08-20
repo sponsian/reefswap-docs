@@ -3,11 +3,11 @@ id: library
 title: Library
 ---
 
-# Library - DO NOT USE AT THIS TIME
+# Library
 
 ## Code
 
-[`UniswapV2Library.sol`](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/libraries/UniswapV2Library.sol)
+[`ReefswapV2Library.sol`](https://github.com/reef-chain/reefswap/blob/main/contracts/libraries/ReefswapV2Library.sol)
 
 # Internal Functions
 

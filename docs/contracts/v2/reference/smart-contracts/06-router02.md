@@ -11,7 +11,7 @@ Because routers are stateless and do not hold token balances, they can be replac
 
 # Address
 
-`ReefswapV2Router02` is deployed at `0x641e34931C03751BFED14C4087bA395303bEd1A5` on the Reef [mainnet](https://reefscan.com/contract/0x641e34931C03751BFED14C4087bA395303bEd1A5), and the [Scuba](https://testnet.reefscan.com/contract/0xxxx)testnet. It was built from commit [5bd61f0](https://github.com/reef-chain/reefswap/commit/5bd61f0fc0d8f8ea1605fbec1861173c34d9e9b6).
+`ReefswapV2Router02` is deployed at `0x641e34931C03751BFED14C4087bA395303bEd1A5` on the Reef [mainnet](https://reefscan.com/contract/0x641e34931C03751BFED14C4087bA395303bEd1A5), and the [Scuba](https://testnet.reefscan.com/contract/0x614b7B6382524C32dDF4ff1f4187Bc0BAAC1ed11)testnet. It was built from commit [5bd61f0](https://github.com/reef-chain/reefswap/commit/5bd61f0fc0d8f8ea1605fbec1861173c34d9e9b6).
 
 # Read-Only Functions
 
