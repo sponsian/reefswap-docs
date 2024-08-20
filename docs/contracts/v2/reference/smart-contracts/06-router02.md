@@ -3,15 +3,15 @@ id: router-02
 title: Router02
 ---
 
-Because routers are stateless and do not hold token balances, they can be replaced safely and trustlessly, if necessary. This may happen if more efficient smart contract patterns are discovered, or if additional functionality is desired. For this reason, routers have _release numbers_, starting at `01`. This is currently recommended release, `02`.
+Because routers are stateless and do not hold token balances, they can be replaced safely and trustlessly, if necessary. This may happen if more efficient smart contract patterns are discovered, or if additional functionality is desired. For this reason, routers have _release numbers_, starting at `01`. This is the only release for ReefSwap, `02`.
 
 # Code
 
-[`UniswapV2Router02.sol`](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/UniswapV2Router02.sol)
+[`ReefswapV2Router02.sol`](https://github.com/reef-chain/reefswap/blob/main/contracts/ReefswapV2Router02.sol)
 
 # Address
 
-`UniswapV2Router02` is deployed at `0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D` on the Ethereum [mainnet](https://etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D), and the [Ropsten](https://ropsten.etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D), [Rinkeby](https://rinkeby.etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D), [Görli](https://goerli.etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D), and [Kovan](https://kovan.etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D) testnets. It was built from commit [6961711](https://github.com/Uniswap/uniswap-v2-periphery/tree/69617118cda519dab608898d62aaa79877a61004).
+`ReefswapV2Router02` is deployed at `0x641e34931C03751BFED14C4087bA395303bEd1A5` on the Reef [mainnet](https://reefscan.com/contract/0x641e34931C03751BFED14C4087bA395303bEd1A5), and the [Scuba](https://testnet.reefscan.com/contract/0xxxx)testnet. It was built from commit [5bd61f0](https://github.com/reef-chain/reefswap/commit/5bd61f0fc0d8f8ea1605fbec1861173c34d9e9b6).
 
 # Read-Only Functions
 
@@ -22,14 +22,6 @@ function factory() external pure returns (address);
 ```
 
 Returns [factory address](../smart-contracts/factory#address).
-
-## WETH
-
-```solidity
-function WETH() external pure returns (address);
-```
-
-Returns the [canonical WETH address](https://blog.0xproject.com/canonical-weth-a9aa7d0279dd) on the Ethereum [mainnet](https://etherscan.io/address/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2), or the [Ropsten](https://ropsten.etherscan.io/address/0xc778417e063141139fce010982780140aa0cd5ab), [Rinkeby](https://rinkeby.etherscan.io/address/0xc778417e063141139fce010982780140aa0cd5ab), [Görli](https://goerli.etherscan.io/address/0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6), or [Kovan](https://kovan.etherscan.io/address/0xd0a1e359811322d97991e03f863a0c30c2cf029c) testnets.
 
 ## quote
 
@@ -97,39 +89,38 @@ Adds liquidity to an ERC-20⇄ERC-20 pool.
 | amountB        | `uint`    | The amount of tokenB sent to the pool.                                                                         |
 | liquidity      | `uint`    | The amount of liquidity tokens minted.                                                                         |
 
-## addLiquidityETH
+## addLiquidityREEF
 
 ```solidity
-function addLiquidityETH(
+function addLiquidityREEF(
   address token,
   uint amountTokenDesired,
   uint amountTokenMin,
-  uint amountETHMin,
+  uint amountREEFMin,
   address to,
   uint deadline
-) external payable returns (uint amountToken, uint amountETH, uint liquidity);
+) external payable returns (uint amountToken, uint amountREEF, uint liquidity);
 ```
 
-Adds liquidity to an ERC-20⇄WETH pool with ETH.
+Adds liquidity to an ERC-20⇄REEF pool with REEF.
 
 - To cover all possible scenarios, `msg.sender` should have already given the router an allowance of at least amountTokenDesired on token.
 - Always adds assets at the ideal ratio, according to the price when the transaction is executed.
-- `msg.value` is treated as a amountETHDesired.
-- Leftover ETH, if any, is returned to `msg.sender`.
-- If a pool for the passed token and WETH does not exists, one is created automatically, and exactly amountTokenDesired/`msg.value` tokens are added.
+- `msg.value` is treated as a amountREEFDesired.
+- Leftover REEF, if any, is returned to `msg.sender`.
+- If a pool for the passed token and REEF does not exists, one is created automatically, and exactly amountTokenDesired/`msg.value` tokens are added.
 
 | Name                           | Type      |                                                                                                                           |
 | :----------------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------ |
 | token                          | `address` | A pool token.                                                                                                             |
-| amountTokenDesired             | `uint`    | The amount of token to add as liquidity if the WETH/token price is <= `msg.value`/amountTokenDesired (token depreciates). |
-| `msg.value` (amountETHDesired) | `uint`    | The amount of ETH to add as liquidity if the token/WETH price is <= amountTokenDesired/`msg.value` (WETH depreciates).    |
-| amountTokenMin                 | `uint`    | Bounds the extent to which the WETH/token price can go up before the transaction reverts. Must be <= amountTokenDesired.  |
-| amountETHMin                   | `uint`    | Bounds the extent to which the token/WETH price can go up before the transaction reverts. Must be <= `msg.value`.         |
+| amountTokenDesired             | `uint`    | The amount of token to add as liquidity if the REEF/token price is <= `msg.value`/amountTokenDesired (token depreciates). |
+| `msg.value` (amountREEFDesired) | `uint`    | The amount of REEF to add as liquidity if the token/REEF price is <= amountTokenDesired/`msg.value` (REEF depreciates).    |
+| amountTokenMin                 | `uint`    | Bounds the extent to which the REEF/token price can go up before the transaction reverts. Must be <= amountTokenDesired.  |
+| amountREEFMin                   | `uint`    | Bounds the extent to which the token/REEF price can go up before the transaction reverts. Must be <= `msg.value`.         |
 | to                             | `address` | Recipient of the liquidity tokens.                                                                                        |
 | deadline                       | `uint`    | Unix timestamp after which the transaction will revert.                                                                   |
 |                                |           |                                                                                                                           |
 | amountToken                    | `uint`    | The amount of token sent to the pool.                                                                                     |
-| amountETH                      | `uint`    | The amount of ETH converted to WETH and sent to the pool.                                                                 |
 | liquidity                      | `uint`    | The amount of liquidity tokens minted.                                                                                    |
 
 ## removeLiquidity
@@ -163,20 +154,20 @@ Removes liquidity from an ERC-20⇄ERC-20 pool.
 | amountA    | `uint`    | The amount of tokenA received.                                                        |
 | amountB    | `uint`    | The amount of tokenB received.                                                        |
 
-## removeLiquidityETH
+## removeLiquidityREEF
 
 ```solidity
-function removeLiquidityETH(
+function removeLiquidityREEF(
   address token,
   uint liquidity,
   uint amountTokenMin,
-  uint amountETHMin,
+  uint amountREEFMin,
   address to,
   uint deadline
-) external returns (uint amountToken, uint amountETH);
+) external returns (uint amountToken, uint amountREEF);
 ```
 
-Removes liquidity from an ERC-20⇄WETH pool and receive ETH.
+Removes liquidity from an ERC-20⇄REEF pool and receive REEF.
 
 - `msg.sender` should have already given the router an allowance of at least liquidity on the pool.
 
@@ -185,12 +176,12 @@ Removes liquidity from an ERC-20⇄WETH pool and receive ETH.
 | token          | `address` | A pool token.                                                                        |
 | liquidity      | `uint`    | The amount of liquidity tokens to remove.                                            |
 | amountTokenMin | `uint`    | The minimum amount of token that must be received for the transaction not to revert. |
-| amountETHMin   | `uint`    | The minimum amount of ETH that must be received for the transaction not to revert.   |
+| amountREEFMin  | `uint`    | The minimum amount of REEF that must be received for the transaction not to revert.   |
 | to             | `address` | Recipient of the underlying assets.                                                  |
 | deadline       | `uint`    | Unix timestamp after which the transaction will revert.                              |
 |                |           |                                                                                      |
 | amountToken    | `uint`    | The amount of token received.                                                        |
-| amountETH      | `uint`    | The amount of ETH received.                                                          |
+| amountREEF     | `uint`    | The amount of REEF received.                                                          |
 
 ## removeLiquidityWithPermit
 
@@ -226,28 +217,28 @@ Removes liquidity from an ERC-20⇄ERC-20 pool without pre-approval, thanks to [
 | amountA    | `uint`    | The amount of tokenA received.                                                        |
 | amountB    | `uint`    | The amount of tokenB received.                                                        |
 
-## removeLiquidityETHWithPermit
+## removeLiquidityREEFWithPermit
 
 ```solidity
-function removeLiquidityETHWithPermit(
+function removeLiquidityREEFWithPermit(
   address token,
   uint liquidity,
   uint amountTokenMin,
-  uint amountETHMin,
+  uint amountREEFMin,
   address to,
   uint deadline,
   bool approveMax, uint8 v, bytes32 r, bytes32 s
-) external returns (uint amountToken, uint amountETH);
+) external returns (uint amountToken, uint amountREEF);
 ```
 
-Removes liquidity from an ERC-20⇄WETTH pool and receive ETH without pre-approval, thanks to [permit](pair-ERC-20#permit).
+Removes liquidity from an ERC-20⇄REEF pool and receive REEF without pre-approval, thanks to [permit](pair-ERC-20#permit).
 
 | Name           | Type      |                                                                                      |
 | :------------- | :-------- | :----------------------------------------------------------------------------------- |
 | token          | `address` | A pool token.                                                                        |
 | liquidity      | `uint`    | The amount of liquidity tokens to remove.                                            |
 | amountTokenMin | `uint`    | The minimum amount of token that must be received for the transaction not to revert. |
-| amountETHMin   | `uint`    | The minimum amount of ETH that must be received for the transaction not to revert.   |
+| amountREEFMin  | `uint`    | The minimum amount of REEF that must be received for the transaction not to revert.   |
 | to             | `address` | Recipient of the underlying assets.                                                  |
 | deadline       | `uint`    | Unix timestamp after which the transaction will revert.                              |
 | approveMax     | `bool`    | Whether or not the approval amount in the signature is for liquidity or `uint(-1)`.  |
@@ -256,22 +247,22 @@ Removes liquidity from an ERC-20⇄WETTH pool and receive ETH without pre-approv
 | s              | `bytes32` | The s component of the permit signature.                                             |
 |                |           |                                                                                      |
 | amountToken    | `uint`    | The amount of token received.                                                        |
-| amountETH      | `uint`    | The amount of ETH received.                                                          |
+| amountREEF     | `uint`    | The amount of REEF received.                                                          |
 
-## removeLiquidityETHSupportingFeeOnTransferTokens
+## removeLiquidityREEFSupportingFeeOnTransferTokens
 
 ```solidity
-function removeLiquidityETHSupportingFeeOnTransferTokens(
+function removeLiquidityREEFSupportingFeeOnTransferTokens(
   address token,
   uint liquidity,
   uint amountTokenMin,
-  uint amountETHMin,
+  uint amountREEFMin,
   address to,
   uint deadline
-) external returns (uint amountETH);
+) external returns (uint amountREEF);
 ```
 
-Identical to [removeLiquidityETH](#removeliquidityeth), but succeeds for tokens that take a fee on transfer.
+Identical to [removeLiquidityREEF](#removeliquidityreef), but succeeds for tokens that take a fee on transfer.
 
 - `msg.sender` should have already given the router an allowance of at least liquidity on the pool.
 
@@ -280,34 +271,34 @@ Identical to [removeLiquidityETH](#removeliquidityeth), but succeeds for tokens 
 | token          | `address` | A pool token.                                                                        |
 | liquidity      | `uint`    | The amount of liquidity tokens to remove.                                            |
 | amountTokenMin | `uint`    | The minimum amount of token that must be received for the transaction not to revert. |
-| amountETHMin   | `uint`    | The minimum amount of ETH that must be received for the transaction not to revert.   |
+| amountREEFMin  | `uint`    | The minimum amount of REEF that must be received for the transaction not to revert.   |
 | to             | `address` | Recipient of the underlying assets.                                                  |
 | deadline       | `uint`    | Unix timestamp after which the transaction will revert.                              |
 |                |           |                                                                                      |
-| amountETH      | `uint`    | The amount of ETH received.                                                          |
+| amountREEF     | `uint`    | The amount of REEF received.                                                          |
 
-## removeLiquidityETHWithPermitSupportingFeeOnTransferTokens
+## removeLiquidityREEFWithPermitSupportingFeeOnTransferTokens
 
 ```solidity
-function removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
+function removeLiquidityREEFWithPermitSupportingFeeOnTransferTokens(
   address token,
   uint liquidity,
   uint amountTokenMin,
-  uint amountETHMin,
+  uint amountREEFMin,
   address to,
   uint deadline,
   bool approveMax, uint8 v, bytes32 r, bytes32 s
-) external returns (uint amountETH);
+) external returns (uint amountREEF);
 ```
 
-Identical to [removeLiquidityETHWithPermit](#removeliquidityethwithpermit), but succeeds for tokens that take a fee on transfer.
+Identical to [removeLiquidityREEFWithPermit](#removeliquidityreefwithpermit), but succeeds for tokens that take a fee on transfer.
 
 | Name           | Type      |                                                                                      |
 | :------------- | :-------- | :----------------------------------------------------------------------------------- |
 | token          | `address` | A pool token.                                                                        |
 | liquidity      | `uint`    | The amount of liquidity tokens to remove.                                            |
 | amountTokenMin | `uint`    | The minimum amount of token that must be received for the transaction not to revert. |
-| amountETHMin   | `uint`    | The minimum amount of ETH that must be received for the transaction not to revert.   |
+| amountREEFMin  | `uint`    | The minimum amount of REEF that must be received for the transaction not to revert.   |
 | to             | `address` | Recipient of the underlying assets.                                                  |
 | deadline       | `uint`    | Unix timestamp after which the transaction will revert.                              |
 | approveMax     | `bool`    | Whether or not the approval amount in the signature is for liquidity or `uint(-1)`.  |
@@ -315,7 +306,7 @@ Identical to [removeLiquidityETHWithPermit](#removeliquidityethwithpermit), but 
 | r              | `bytes32` | The r component of the permit signature.                                             |
 | s              | `bytes32` | The s component of the permit signature.                                             |
 |                |           |                                                                                      |
-| amountETH      | `uint`    | The amount of ETH received.                                                          |
+| amountREEF     | `uint`    | The amount of REEF received.                                                          |
 
 ## swapExactTokensForTokens
 
@@ -369,20 +360,20 @@ Receive an exact amount of output tokens for as few input tokens as possible, al
 |             |                      |                                                                                                                                      |
 | amounts     | `uint[] memory`      | The input token amount and all subsequent output token amounts.                                                                      |
 
-## swapExactETHForTokens
+## swapExactREEFForTokens
 
 ```solidity
-function swapExactETHForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline)
+function swapExactREEFForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline)
   external
   payable
   returns (uint[] memory amounts);
 ```
 
-Swaps an exact amount of ETH for as many output tokens as possible, along the route determined by the path. The first element of path must be [WETH](#weth), the last is the output token, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).
+Swaps an exact amount of REEF for as many output tokens as possible, along the route determined by the path. The first element of path must be [REEF](#reef), the last is the output token, and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).
 
 | Name                   | Type                 |                                                                                                                                      |
 | :--------------------- | :------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
-| `msg.value` (amountIn) | `uint`               | The amount of ETH to send.                                                                                                           |
+| `msg.value` (amountIn) | `uint`               | The amount of REEF to send.                                                                                                           |
 | amountOutMin           | `uint`               | The minimum amount of output tokens that must be received for the transaction not to revert.                                         |
 | path                   | `address[] calldata` | An array of token addresses. `path.length` must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity. |
 | to                     | `address`            | Recipient of the output tokens.                                                                                                      |
@@ -390,68 +381,68 @@ Swaps an exact amount of ETH for as many output tokens as possible, along the ro
 |                        |                      |                                                                                                                                      |
 | amounts                | `uint[] memory`      | The input token amount and all subsequent output token amounts.                                                                      |
 
-## swapTokensForExactETH
+## swapTokensForExactREEF
 
 ```solidity
-function swapTokensForExactETH(uint amountOut, uint amountInMax, address[] calldata path, address to, uint deadline)
+function swapTokensForExactREEF(uint amountOut, uint amountInMax, address[] calldata path, address to, uint deadline)
   external
   returns (uint[] memory amounts);
 ```
 
-Receive an exact amount of ETH for as few input tokens as possible, along the route determined by the path. The first element of path is the input token, the last must be [WETH](#weth), and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).
+Receive an exact amount of REEF for as few input tokens as possible, along the route determined by the path. The first element of path is the input token, the last must be [REEF](#reef), and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).
 
 - `msg.sender` should have already given the router an allowance of at least amountInMax on the input token.
-- If the to address is a smart contract, it must have the ability to receive ETH.
+- If the to address is a smart contract, it must have the ability to receive REEF.
 
 | Name        | Type                 |                                                                                                                                      |
 | :---------- | :------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
-| amountOut   | `uint`               | The amount of ETH to receive.                                                                                                        |
+| amountOut   | `uint`               | The amount of REEF to receive.                                                                                                        |
 | amountInMax | `uint`               | The maximum amount of input tokens that can be required before the transaction reverts.                                              |
 | path        | `address[] calldata` | An array of token addresses. `path.length` must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity. |
-| to          | `address`            | Recipient of ETH.                                                                                                                    |
+| to          | `address`            | Recipient of REEF.                                                                                                                    |
 | deadline    | `uint`               | Unix timestamp after which the transaction will revert.                                                                              |
 |             |                      |                                                                                                                                      |
 | amounts     | `uint[] memory`      | The input token amount and all subsequent output token amounts.                                                                      |
 
-## swapExactTokensForETH
+## swapExactTokensForREEF
 
 ```solidity
-function swapExactTokensForETH(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)
+function swapExactTokensForREEF(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)
   external
   returns (uint[] memory amounts);
 ```
 
-Swaps an exact amount of tokens for as much ETH as possible, along the route determined by the path. The first element of path is the input token, the last must be [WETH](#weth), and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).
+Swaps an exact amount of tokens for as much REEF as possible, along the route determined by the path. The first element of path is the input token, the last must be [REEF](#reef), and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).
 
-- If the to address is a smart contract, it must have the ability to receive ETH.
+- If the to address is a smart contract, it must have the ability to receive REEF.
 
 | Name         | Type                 |                                                                                                                                      |
 | :----------- | :------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
 | amountIn     | `uint`               | The amount of input tokens to send.                                                                                                  |
 | amountOutMin | `uint`               | The minimum amount of output tokens that must be received for the transaction not to revert.                                         |
 | path         | `address[] calldata` | An array of token addresses. `path.length` must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity. |
-| to           | `address`            | Recipient of the ETH.                                                                                                                |
+| to           | `address`            | Recipient of the REEF.                                                                                                                |
 | deadline     | `uint`               | Unix timestamp after which the transaction will revert.                                                                              |
 |              |                      |                                                                                                                                      |
 | amounts      | `uint[] memory`      | The input token amount and all subsequent output token amounts.                                                                      |
 
-## swapETHForExactTokens
+## swapREEFForExactTokens
 
 ```solidity
-function swapETHForExactTokens(uint amountOut, address[] calldata path, address to, uint deadline)
+function swapREEFForExactTokens(uint amountOut, address[] calldata path, address to, uint deadline)
   external
   payable
   returns (uint[] memory amounts);
 ```
 
-Receive an exact amount of tokens for as little ETH as possible, along the route determined by the path. The first element of path must be [WETH](#weth), the last is the output token and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).
+Receive an exact amount of tokens for as little REEF as possible, along the route determined by the path. The first element of path must be [REEF](#reef), the last is the output token and any intermediate elements represent intermediate pairs to trade through (if, for example, a direct pair does not exist).
 
-- Leftover ETH, if any, is returned to `msg.sender`.
+- Leftover REEF, if any, is returned to `msg.sender`.
 
 | Name                      | Type                 |                                                                                                                                      |
 | :------------------------ | :------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
 | amountOut                 | `uint`               | The amount of tokens to receive.                                                                                                     |
-| `msg.value` (amountInMax) | `uint`               | The maximum amount of ETH that can be required before the transaction reverts.                                                       |
+| `msg.value` (amountInMax) | `uint`               | The maximum amount of REEF that can be required before the transaction reverts.                                                       |
 | path                      | `address[] calldata` | An array of token addresses. `path.length` must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity. |
 | to                        | `address`            | Recipient of the output tokens.                                                                                                      |
 | deadline                  | `uint`               | Unix timestamp after which the transaction will revert.                                                                              |
@@ -482,10 +473,10 @@ Identical to [swapExactTokensForTokens](#swapexacttokensfortokens), but succeeds
 | to           | `address`            | Recipient of the output tokens.                                                                                                      |
 | deadline     | `uint`               | Unix timestamp after which the transaction will revert.                                                                              |
 
-## swapExactETHForTokensSupportingFeeOnTransferTokens
+## swapExactREEFForTokensSupportingFeeOnTransferTokens
 
 ```solidity
-function swapExactETHForTokensSupportingFeeOnTransferTokens(
+function swapExactREEFForTokensSupportingFeeOnTransferTokens(
   uint amountOutMin,
   address[] calldata path,
   address to,
@@ -493,20 +484,20 @@ function swapExactETHForTokensSupportingFeeOnTransferTokens(
 ) external payable;
 ```
 
-Identical to [swapExactETHForTokens](#swapexactethfortokens), but succeeds for tokens that take a fee on transfer.
+Identical to [swapExactREEFForTokens](#swapexactreeffortokens), but succeeds for tokens that take a fee on transfer.
 
 | Name                   | Type                 |                                                                                                                                      |
 | :--------------------- | :------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
-| `msg.value` (amountIn) | `uint`               | The amount of ETH to send.                                                                                                           |
+| `msg.value` (amountIn) | `uint`               | The amount of REEF to send.                                                                                                           |
 | amountOutMin           | `uint`               | The minimum amount of output tokens that must be received for the transaction not to revert.                                         |
 | path                   | `address[] calldata` | An array of token addresses. `path.length` must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity. |
 | to                     | `address`            | Recipient of the output tokens.                                                                                                      |
 | deadline               | `uint`               | Unix timestamp after which the transaction will revert.                                                                              |
 
-## swapExactTokensForETHSupportingFeeOnTransferTokens
+## swapExactTokensForREEFSupportingFeeOnTransferTokens
 
 ```solidity
-function swapExactTokensForETHSupportingFeeOnTransferTokens(
+function swapExactTokensForREEFSupportingFeeOnTransferTokens(
   uint amountIn,
   uint amountOutMin,
   address[] calldata path,
@@ -515,16 +506,16 @@ function swapExactTokensForETHSupportingFeeOnTransferTokens(
 ) external;
 ```
 
-Identical to [swapExactTokensForETH](#swapexacttokensforeth), but succeeds for tokens that take a fee on transfer.
+Identical to [swapExactTokensForREEF](#swapexacttokensforreef), but succeeds for tokens that take a fee on transfer.
 
-- If the to address is a smart contract, it must have the ability to receive ETH.
+- If the to address is a smart contract, it must have the ability to receive REEF.
 
 | Name         | Type                 |                                                                                                                                      |
 | :----------- | :------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
 | amountIn     | `uint`               | The amount of input tokens to send.                                                                                                  |
 | amountOutMin | `uint`               | The minimum amount of output tokens that must be received for the transaction not to revert.                                         |
 | path         | `address[] calldata` | An array of token addresses. `path.length` must be >= 2. Pools for each consecutive pair of addresses must exist and have liquidity. |
-| to           | `address`            | Recipient of the ETH.                                                                                                                |
+| to           | `address`            | Recipient of the REEF.                                                                                                                |
 | deadline     | `uint`               | Unix timestamp after which the transaction will revert.                                                                              |
 
 # Interface
@@ -538,7 +529,7 @@ pragma solidity >=0.6.2;
 
 interface IUniswapV2Router01 {
     function factory() external pure returns (address);
-    function WETH() external pure returns (address);
+    function REEF() external pure returns (address);
 
     function addLiquidity(
         address tokenA,
@@ -550,14 +541,14 @@ interface IUniswapV2Router01 {
         address to,
         uint deadline
     ) external returns (uint amountA, uint amountB, uint liquidity);
-    function addLiquidityETH(
+    function addLiquidityREEF(
         address token,
         uint amountTokenDesired,
         uint amountTokenMin,
-        uint amountETHMin,
+        uint amountREEFMin,
         address to,
         uint deadline
-    ) external payable returns (uint amountToken, uint amountETH, uint liquidity);
+    ) external payable returns (uint amountToken, uint amountREEF, uint liquidity);
     function removeLiquidity(
         address tokenA,
         address tokenB,
@@ -567,14 +558,14 @@ interface IUniswapV2Router01 {
         address to,
         uint deadline
     ) external returns (uint amountA, uint amountB);
-    function removeLiquidityETH(
+    function removeLiquidityREEF(
         address token,
         uint liquidity,
         uint amountTokenMin,
-        uint amountETHMin,
+        uint amountREEFMin,
         address to,
         uint deadline
-    ) external returns (uint amountToken, uint amountETH);
+    ) external returns (uint amountToken, uint amountREEF);
     function removeLiquidityWithPermit(
         address tokenA,
         address tokenB,
@@ -585,15 +576,15 @@ interface IUniswapV2Router01 {
         uint deadline,
         bool approveMax, uint8 v, bytes32 r, bytes32 s
     ) external returns (uint amountA, uint amountB);
-    function removeLiquidityETHWithPermit(
+    function removeLiquidityREEFWithPermit(
         address token,
         uint liquidity,
         uint amountTokenMin,
-        uint amountETHMin,
+        uint amountREEFMin,
         address to,
         uint deadline,
         bool approveMax, uint8 v, bytes32 r, bytes32 s
-    ) external returns (uint amountToken, uint amountETH);
+    ) external returns (uint amountToken, uint amountREEF);
     function swapExactTokensForTokens(
         uint amountIn,
         uint amountOutMin,
@@ -608,17 +599,17 @@ interface IUniswapV2Router01 {
         address to,
         uint deadline
     ) external returns (uint[] memory amounts);
-    function swapExactETHForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline)
+    function swapExactREEFForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline)
         external
         payable
         returns (uint[] memory amounts);
-    function swapTokensForExactETH(uint amountOut, uint amountInMax, address[] calldata path, address to, uint deadline)
+    function swapTokensForExactREEF(uint amountOut, uint amountInMax, address[] calldata path, address to, uint deadline)
         external
         returns (uint[] memory amounts);
-    function swapExactTokensForETH(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)
+    function swapExactTokensForREEF(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)
         external
         returns (uint[] memory amounts);
-    function swapETHForExactTokens(uint amountOut, address[] calldata path, address to, uint deadline)
+    function swapREEFForExactTokens(uint amountOut, address[] calldata path, address to, uint deadline)
         external
         payable
         returns (uint[] memory amounts);
@@ -631,23 +622,23 @@ interface IUniswapV2Router01 {
 }
 
 interface IUniswapV2Router02 is IUniswapV2Router01 {
-    function removeLiquidityETHSupportingFeeOnTransferTokens(
+    function removeLiquidityREEFSupportingFeeOnTransferTokens(
         address token,
         uint liquidity,
         uint amountTokenMin,
-        uint amountETHMin,
+        uint amountREEFMin,
         address to,
         uint deadline
-    ) external returns (uint amountETH);
-    function removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
+    ) external returns (uint amountREEF);
+    function removeLiquidityREEFWithPermitSupportingFeeOnTransferTokens(
         address token,
         uint liquidity,
         uint amountTokenMin,
-        uint amountETHMin,
+        uint amountREEFMin,
         address to,
         uint deadline,
         bool approveMax, uint8 v, bytes32 r, bytes32 s
-    ) external returns (uint amountETH);
+    ) external returns (uint amountREEF);
 
     function swapExactTokensForTokensSupportingFeeOnTransferTokens(
         uint amountIn,
@@ -656,13 +647,13 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
         address to,
         uint deadline
     ) external;
-    function swapExactETHForTokensSupportingFeeOnTransferTokens(
+    function swapExactREEFForTokensSupportingFeeOnTransferTokens(
         uint amountOutMin,
         address[] calldata path,
         address to,
         uint deadline
     ) external payable;
-    function swapExactTokensForETHSupportingFeeOnTransferTokens(
+    function swapExactTokensForREEFSupportingFeeOnTransferTokens(
         uint amountIn,
         uint amountOutMin,
         address[] calldata path,
