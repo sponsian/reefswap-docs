@@ -86,3 +86,5 @@ Let's walk through an example by considering the ReefSwap smart contract:
     - Yes I added them [here](./docs/contracts/v2/reference)
 - Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines?
     - Yes
+
+Thank you to the Uniswap team for producing an amazing AMM in Uniswap v2, and for allowing teams like ours to build on it. ReefSwap v1 is a Uniswap v2 fork, and these docs were also forked from Uniswap's in order to speed up production.
