@@ -1,7 +1,5 @@
 import { useLocation } from '@docusaurus/router'
 import OriginalNavBarItem from '@theme-original/NavbarItem'
-import { TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, DocsProtocolVersion, SharedEventName } from '@uniswap/analytics-events'
 import React from 'react'
 
 enum ProtocolVersion {

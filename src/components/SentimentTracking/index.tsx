@@ -1,6 +1,4 @@
 import styled from '@emotion/styled'
-import { TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, DocsSentiment, DocsSentimentSection, SharedEventName } from '@uniswap/analytics-events'
 import React, { useCallback, useState } from 'react'
 import { Frown, Meh, Smile } from 'react-feather'
 

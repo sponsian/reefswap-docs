@@ -9,13 +9,6 @@ import Npm from '@site/static/img/npm.svg'
 import UGP from '@site/static/img/UGP.png'
 import Layout from '@theme/Layout'
 import ThemedImage from '@theme/ThemedImage'
-import { TraceEvent } from '@uniswap/analytics'
-import {
-  BrowserEvent,
-  DocsHomepageElementName as ElementName,
-  DocsSectionName as SectionName,
-  SharedEventName,
-} from '@uniswap/analytics-events'
 import React from 'react'
 import { ArrowUpRight as LinkIcon, BookOpen, HelpCircle, Info, MessageCircle } from 'react-feather'
 

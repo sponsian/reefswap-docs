@@ -3150,20 +3150,6 @@
     "@typescript-eslint/types" "5.42.1"
     eslint-visitor-keys "^3.3.0"
 
-"@uniswap/analytics-events@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@uniswap/analytics-events/-/analytics-events-2.0.0.tgz#5370421c916f900900965a5f8da5316dbb39c674"
-  integrity sha512-Cmr+1H0VJX+vdxGwpZpL5hOkRw49j8hu2uLddiXChP64HHihjiYljC3tckkCJpkpW6NHHlfX9U+D2Wy0MiVaDw==
-
-"@uniswap/analytics@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@uniswap/analytics/-/analytics-1.1.0.tgz#0b42f9e3db06e84504ed3f5461d00544ea0fe8de"
-  integrity sha512-PPQE5MZlK+jyXW7x7DhiQGzopQ0Pep1hGtjtvHOv2PoAsTm+x2xYVZr5vOqevOfDdXCSncF02RFVyXI5onDzdw==
-  dependencies:
-    "@amplitude/analytics-browser" "^1.5.8"
-    react "^18.2.0"
-    react-dom "^18.2.0"
-
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.11.1.tgz#2bfd767eae1a6996f432ff7e8d7fc75679c0b6a7"

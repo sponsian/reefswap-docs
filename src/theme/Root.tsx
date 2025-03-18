@@ -1,7 +1,5 @@
 import { useLocation } from '@docusaurus/router'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
-import { initializeAnalytics, OriginApplication, sendAnalyticsEvent, Trace, user } from '@uniswap/analytics'
-import { CustomUserProperties, getBrowser, SharedEventName } from '@uniswap/analytics-events'
 import React, { useEffect } from 'react'
 import { getCLS, getFCP, getFID, getLCP, Metric } from 'web-vitals'
 
